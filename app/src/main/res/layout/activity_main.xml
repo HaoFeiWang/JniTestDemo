@@ -23,4 +23,22 @@
         android:gravity="center"
         android:text="Jni测试2" />
 
+    <TextView
+        android:id="@+id/jni_test_three"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#f7bbbb"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:text="Jni测试3" />
+
+    <TextView
+        android:id="@+id/jni_test_4"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#f7bbbb"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:text="Jni测试4" />
+
 </LinearLayout>

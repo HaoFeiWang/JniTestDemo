@@ -13,7 +13,7 @@ add_library( # 设置库的名称
              # 将库设置为共享库
              SHARED
 
-             # 为源文件提供一个相对路径
+             # 依赖的cpp文件，每添加一个 C/C++文件都要添加到这里，不然不会被编译
              src/main/cpp/native-lib.cpp )
 
 

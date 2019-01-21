@@ -6,19 +6,31 @@ package com.whf.jnitestdemo;
 
 public class JniTest {
 
-//    // Used to load the 'native-lib' library on application startup.
-//    static {
-//        System.loadLibrary("native-lib");
-//    }
+    static {
+        System.loadLibrary("native-lib");
+    }
 
+    private String name = "Hello C++";
+    public static String tag = "Hello Java";
 
-    /**
-     * A native method that is implemented by the 'native-lib' native library,
-     * which is packaged with this application.
-     */
     public native String stringFromJNI();
 
     public native String stringFromJNI(String src);
 
-    public native int intFrom_JNI();
+    /**
+     * 获取指定对象的Class
+     */
+    public native Class getObjectClass(Object obj);
+
+
+    /**
+     * 获取指定对象的属性
+     */
+    public native String getObjectFiled(Object obj);
+
+
+    /**
+     * 修改指定类的静态属性
+     */
+    public native void setStaticFiled(Object obj);
 }
