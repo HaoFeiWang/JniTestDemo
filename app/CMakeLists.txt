@@ -4,6 +4,9 @@
 # 指定需要CMAKE的最小版本
 cmake_minimum_required(VERSION 3.4.1)
 
+file(GLOB JNI_SRC "src/main/cpp/*.cpp")
+
+
 # 创建并命名库，将其设置为静态的或共享，并提供其源代码的相对路径。
 # 你可以定义多个library库，并使用CMake来构建。
 # Gradle会自动将包共享库关联到你的apk程序。
@@ -14,7 +17,7 @@ add_library( # 设置库的名称
              SHARED
 
              # 依赖的cpp文件，每添加一个 C/C++文件都要添加到这里，不然不会被编译
-             src/main/cpp/native-lib.cpp )
+             ${JNI_SRC})
 
 
 # 搜索指定预先构建的库和存储路径变量，因为CMake包括系统库搜索,
