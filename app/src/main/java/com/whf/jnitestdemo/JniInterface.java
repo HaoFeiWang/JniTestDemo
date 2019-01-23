@@ -49,4 +49,9 @@ public class JniInterface {
      * 动态注册JNI
      */
     public native String dynamicRegister();
+
+    /**
+     * 文件读取
+     */
+    public native String readFile();
 }

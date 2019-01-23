@@ -79,6 +79,15 @@
             android:gravity="center"
             android:text="动态注册" />
 
+        <TextView
+            android:id="@+id/jni_test_9"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="#f7bbbb"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="文件读取" />
+
     </LinearLayout>
 
 </ScrollView>

@@ -1,5 +1,10 @@
 package com.whf.jnitestdemo;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,8 +25,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.jni_test_6).setOnClickListener(this);
         findViewById(R.id.jni_test_7).setOnClickListener(this);
         findViewById(R.id.jni_test_8).setOnClickListener(this);
+        findViewById(R.id.jni_test_9).setOnClickListener(this);
+
+        requestPermission();
     }
 
+    private void requestPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            //权限还没有授予，需要在这里写申请权限的代码
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE}, 60);
+        }
+    }
 
     @Override
     public void onClick(View v) {
@@ -50,7 +67,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.jni_test_8:
                 jniTest8();
                 break;
+            case R.id.jni_test_9:
+                jniTest9();
+                break;
         }
+    }
+
+    private void jniTest9() {
+        JniInterface jniInterface = new JniInterface();
+        String value = jniInterface.readFile();
+        Toast.makeText(this,value,Toast.LENGTH_SHORT).show();
     }
 
     private void jniTest8() {
@@ -72,24 +98,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Toast.makeText(this,"Length = "+length,Toast.LENGTH_SHORT).show();
     }
 
-    private void jniTestOne() {
-        JniInterface jniInterface = new JniInterface();
-        String str = jniInterface.stringFromJNI();
-        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
-    }
-
-    private void jniTestTwo() {
+    private void jniTest5() {
         Person person = new Person(this);
         JniInterface jniInterface = new JniInterface();
-        Class clazz = jniInterface.getObjectClass(person);
-        Toast.makeText(this, clazz.getSimpleName(), Toast.LENGTH_SHORT).show();
-    }
-
-    private void jniTestThree() {
-        Person person = new Person(this);
-        JniInterface jniInterface = new JniInterface();
-        String filedValue = jniInterface.getObjectFiled(person);
-        Toast.makeText(this, filedValue, Toast.LENGTH_SHORT).show();
+        jniInterface.callMethod(person);
     }
 
     private void jniTest4() {
@@ -99,10 +111,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Toast.makeText(this, Person.tag, Toast.LENGTH_SHORT).show();
     }
 
-    private void jniTest5() {
+    private void jniTestThree() {
         Person person = new Person(this);
         JniInterface jniInterface = new JniInterface();
-        jniInterface.callMethod(person);
+        String filedValue = jniInterface.getObjectFiled(person);
+        Toast.makeText(this, filedValue, Toast.LENGTH_SHORT).show();
     }
 
+    private void jniTestTwo() {
+        Person person = new Person(this);
+        JniInterface jniInterface = new JniInterface();
+        Class clazz = jniInterface.getObjectClass(person);
+        Toast.makeText(this, clazz.getSimpleName(), Toast.LENGTH_SHORT).show();
+    }
+
+    private void jniTestOne() {
+        JniInterface jniInterface = new JniInterface();
+        String str = jniInterface.stringFromJNI();
+        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+    }
 }
