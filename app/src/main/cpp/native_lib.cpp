@@ -2,8 +2,7 @@
 #include <string>
 
 extern "C"
-JNIEXPORT jstring JNICALL
-Java_com_whf_jnitestdemo_JniInterface_stringFromJNI__(
+JNIEXPORT jstring JNICALL Java_com_whf_jnitestdemo_JniInterface_stringFromJNI__(
         JNIEnv *env, jobject) {
 
     std::string hello = "Hello from C++";
@@ -34,7 +33,7 @@ Java_com_whf_jnitestdemo_JniInterface_getObjectFiled(JNIEnv *env, jobject, jobje
 }
 
 extern "C"
-JNIEXPORT jstring JNICALL
+JNIEXPORT void JNICALL
 Java_com_whf_jnitestdemo_JniInterface_setStaticFiled(JNIEnv *env, jobject, jobject obj) {
     jclass clazz = env->GetObjectClass(obj);
     jfieldID nameId = env->GetStaticFieldID(clazz, "tag", "Ljava/lang/String;");
