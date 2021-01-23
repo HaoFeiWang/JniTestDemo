@@ -1,6 +1,7 @@
 package com.whf.jnitestdemo;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.jni_test_7).setOnClickListener(this);
         findViewById(R.id.jni_test_8).setOnClickListener(this);
         findViewById(R.id.jni_test_9).setOnClickListener(this);
+        findViewById(R.id.jni_test_10).setOnClickListener(this);
 
         requestPermission();
     }
@@ -70,32 +72,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.jni_test_9:
                 jniTest9();
                 break;
+            case R.id.jni_test_10:
+                startActivity(new Intent(this, OpenGlActivity.class));
+                break;
         }
     }
 
     private void jniTest9() {
         JniInterface jniInterface = new JniInterface();
         String value = jniInterface.readFile();
-        Toast.makeText(this,value,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, value, Toast.LENGTH_SHORT).show();
     }
 
     private void jniTest8() {
         JniInterface jniInterface = new JniInterface();
         String value = jniInterface.dynamicRegister();
-        Toast.makeText(this,value,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, value, Toast.LENGTH_SHORT).show();
     }
 
     private void jniTest7() {
         JniInterface jniInterface = new JniInterface();
         Person person = jniInterface.createPerson(Person.class);
-        Toast.makeText(this,person.name,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, person.name, Toast.LENGTH_SHORT).show();
     }
 
     private void jniTest6() {
         JniInterface jniInterface = new JniInterface();
-        int[] args = {1,2,3,4,5};
+        int[] args = {1, 2, 3, 4, 5};
         int length = jniInterface.getArrayLength(args);
-        Toast.makeText(this,"Length = "+length,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Length = " + length, Toast.LENGTH_SHORT).show();
     }
 
     private void jniTest5() {

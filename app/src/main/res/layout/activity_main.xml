@@ -88,6 +88,15 @@
             android:gravity="center"
             android:text="文件读取" />
 
+        <TextView
+            android:id="@+id/jni_test_10"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#f7bbbb"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="打开OpenGLES测试" />
+
     </LinearLayout>
 
 </ScrollView>

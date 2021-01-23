@@ -11,8 +11,8 @@ android {
         externalNativeBuild {
             cmake {
                 cppFlags ""
-                //默认只生成armeabi-v7a一个平台
-                abiFilters 'armeabi-v7a'
+                //默认只生成armeabi-v7a一个平台，X86_64是为了模拟器调试
+                abiFilters 'armeabi-v7a', 'x86_64'
             }
         }
     }
