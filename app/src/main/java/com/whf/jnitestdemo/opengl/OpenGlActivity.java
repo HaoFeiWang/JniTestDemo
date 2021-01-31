@@ -1,17 +1,10 @@
-package com.whf.jnitestdemo;
+package com.whf.jnitestdemo.opengl;
 
-import android.app.Activity;
-import android.content.res.AssetManager;
-import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import junit.framework.Test;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import com.whf.jnitestdemo.R;
 
 public class OpenGlActivity extends AppCompatActivity {
 
@@ -24,7 +17,8 @@ public class OpenGlActivity extends AppCompatActivity {
         glSurfaceView = findViewById(R.id.gl_view);
 
         glSurfaceView.setEGLContextClientVersion(2);
-        glSurfaceView.setRenderer(new TestRender(this));
+        //glSurfaceView.setRenderer(new JavaRender(this));
+        glSurfaceView.setRenderer(new NativeRender());
         //设置GlSurfaceView渲染模式，一定要在setRenderer之后调用
         //RENDERMODE_WHEN_DIRTY只有在调用requestRender或者onResume等方法时才渲染
         //RENDERMODE_CONTINUOUSLY表示一直渲染
@@ -34,10 +28,12 @@ public class OpenGlActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        glSurfaceView.onResume();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        glSurfaceView.onPause();
     }
 }

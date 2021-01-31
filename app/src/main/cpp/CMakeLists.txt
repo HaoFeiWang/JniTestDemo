@@ -7,8 +7,12 @@ cmake_minimum_required(VERSION 3.4.1)
 #set(my_lib_path ${CMAKE_SOURCE_DIR}/libs/${ANDROID_ABI})
 #set(CMAKE_CXX_FLAGS ""${CMAKE_CXX_FLAGS} -L {my_lib_path} "")
 
-file(GLOB JNI_SRC "src/main/cpp/*.cpp")
-#aux_source_directory("src/main/cpp/"  JNI_SRC)
+file(GLOB JNI_SRC
+        "${CMAKE_SOURCE_DIR}/*.h"
+        "${CMAKE_SOURCE_DIR}/*.cpp"
+        "${CMAKE_SOURCE_DIR}/jnitest/*.cpp"
+        "${CMAKE_SOURCE_DIR}/opengl/*.cpp")
+#aux_source_directory("."  JNI_SRC)
 
 # 创建并命名库，将其设置为静态的或共享，并提供其源代码的相对路径。
 # 你可以定义多个library库，并使用CMake来构建。

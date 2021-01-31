@@ -2,7 +2,7 @@
 #include <string>
 #include <stdio.h>
 #include <stdlib.h>
-#include "android_log.h"
+#include "../android_log.h"
 
 
 extern "C"

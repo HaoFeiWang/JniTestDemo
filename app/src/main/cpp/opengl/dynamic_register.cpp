@@ -5,21 +5,42 @@
 #include <jni.h>
 #include <stdio.h>
 #include <string>
-#include "android_log.h"
-
+#include "../android_log.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-//定义类名
-static const char *className = "com/whf/jnitestdemo/JniInterface";
+#define jniClassName "com/whf/jnitestdemo/opengl/JniRendererInterface"
 
-//定义对应Java native方法的 C++ 函数，函数名可以随意命名
-static jstring sayHello(JNIEnv *env, jobject) {
-    LOGI("hello, this is native log.");
-    const char *hello = "Hello from C++.";
-    return env->NewStringUTF(hello);
+JNIEXPORT void JNICALL OpenGL_init(JNIEnv *env, jobject instance) {
+    LOGD("jni call OpenGL_init");
+}
+
+JNIEXPORT void JNICALL OpenGL_release(JNIEnv *env, jobject instance) {
+    LOGD("jni call OpenGL_release");
+
+}
+
+JNIEXPORT void JNICALL OpenGL_setImageData(JNIEnv *env, jobject instance,
+        jint format,jint width,jint height,jbyteArray imageData) {
+    LOGD("jni call OpenGL_setImageData");
+
+}
+
+JNIEXPORT void JNICALL OpenGL_onSurfaceCreated(JNIEnv *env, jobject instance) {
+    LOGD("jni call OpenGL_onSurfaceCreated");
+
+}
+
+JNIEXPORT void JNICALL OpenGL_onSurfaceChanged(JNIEnv *env, jobject instance,jint width,jint height) {
+    LOGD("jni call OpenGL_onSurfaceChanged");
+
+}
+
+JNIEXPORT void JNICALL OpenGL_onDrawFrame(JNIEnv *env, jobject instance) {
+    LOGD("jni call OpenGL_onDrawFrame");
+
 }
 
 /*
@@ -29,7 +50,12 @@ static jstring sayHello(JNIEnv *env, jobject) {
  * 参数3：C++定义对应 Java native方法的函数名
  */
 static JNINativeMethod jni_Methods_table[] = {
-        {"dynamicRegister", "()Ljava/lang/String;", (void *) sayHello},
+        {"init",             "()V",      (void *) OpenGL_init},
+        {"release",          "()V",      (void *) OpenGL_release},
+        {"setImageData",     "(III[B)V", (void *) OpenGL_setImageData},
+        {"onSurfaceCreated", "()V",      (void *) OpenGL_onSurfaceCreated},
+        {"onSurfaceChanged", "(II)V",    (void *) OpenGL_onSurfaceChanged},
+        {"onDrawFrame",      "()V",      (void *) OpenGL_onDrawFrame},
 };
 
 //根据函数映射表注册函数
@@ -60,7 +86,7 @@ jint JNI_OnLoad(JavaVM *vm, void *reserved) {
     if (vm->GetEnv((void **) &env, JNI_VERSION_1_4) != JNI_OK) {
         return JNI_EVERSION;
     }
-    registerNativeMethods(env, className, jni_Methods_table,
+    registerNativeMethods(env, jniClassName, jni_Methods_table,
                           sizeof(jni_Methods_table) / sizeof(JNINativeMethod));
     return JNI_VERSION_1_4;
 }

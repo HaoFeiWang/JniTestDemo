@@ -1,4 +1,4 @@
-package com.whf.jnitestdemo;
+package com.whf.jnitestdemo.jnitest;
 
 import android.content.Context;
 import android.util.Log;

@@ -1,9 +1,7 @@
-package com.whf.jnitestdemo;
+package com.whf.jnitestdemo.opengl;
 
 import android.opengl.GLES20;
 import android.util.Log;
-
-import java.nio.FloatBuffer;
 
 public class ShaderUtils {
 

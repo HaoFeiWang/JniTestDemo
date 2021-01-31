@@ -1,4 +1,4 @@
-package com.whf.jnitestdemo;
+package com.whf.jnitestdemo.jnitest;
 
 
 /**
@@ -6,10 +6,6 @@ package com.whf.jnitestdemo;
  */
 
 public class JniInterface {
-
-    static {
-        System.loadLibrary("native-lib");
-    }
 
     public native String stringFromJNI();
 
@@ -44,11 +40,6 @@ public class JniInterface {
      * 创建一个指定对象
      */
     public native Person createPerson(Class clazz);
-
-    /**
-     * 动态注册JNI
-     */
-    public native String dynamicRegister();
 
     /**
      * 文件读取

@@ -3,7 +3,6 @@ package com.whf.jnitestdemo;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -11,8 +10,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.whf.jnitestdemo.jnitest.JniInterface;
+import com.whf.jnitestdemo.jnitest.Person;
+import com.whf.jnitestdemo.opengl.OpenGlActivity;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    static {
+        System.loadLibrary("native-lib");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,9 +91,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void jniTest8() {
-        JniInterface jniInterface = new JniInterface();
-        String value = jniInterface.dynamicRegister();
-        Toast.makeText(this, value, Toast.LENGTH_SHORT).show();
     }
 
     private void jniTest7() {

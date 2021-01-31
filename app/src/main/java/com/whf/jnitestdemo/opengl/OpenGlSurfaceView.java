@@ -1,4 +1,4 @@
-package com.whf.jnitestdemo;
+package com.whf.jnitestdemo.opengl;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
