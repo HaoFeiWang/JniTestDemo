@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <string>
 #include "../android_log.h"
+#include "native_gl_render.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -15,6 +16,7 @@ extern "C" {
 
 JNIEXPORT void JNICALL OpenGL_init(JNIEnv *env, jobject instance) {
     LOGD("jni call OpenGL_init");
+    NativeGLRender::getInstance();
 }
 
 JNIEXPORT void JNICALL OpenGL_release(JNIEnv *env, jobject instance) {
@@ -23,24 +25,26 @@ JNIEXPORT void JNICALL OpenGL_release(JNIEnv *env, jobject instance) {
 }
 
 JNIEXPORT void JNICALL OpenGL_setImageData(JNIEnv *env, jobject instance,
-        jint format,jint width,jint height,jbyteArray imageData) {
+                                           jint format, jint width, jint height,
+                                           jbyteArray imageData) {
     LOGD("jni call OpenGL_setImageData");
-
 }
 
 JNIEXPORT void JNICALL OpenGL_onSurfaceCreated(JNIEnv *env, jobject instance) {
     LOGD("jni call OpenGL_onSurfaceCreated");
+    NativeGLRender::getInstance()->OnSurfaceCreated();
 
 }
 
-JNIEXPORT void JNICALL OpenGL_onSurfaceChanged(JNIEnv *env, jobject instance,jint width,jint height) {
+JNIEXPORT void JNICALL
+OpenGL_onSurfaceChanged(JNIEnv *env, jobject instance, jint width, jint height) {
     LOGD("jni call OpenGL_onSurfaceChanged");
-
+    NativeGLRender::getInstance()->OnSurfaceChanged(width, height);
 }
 
 JNIEXPORT void JNICALL OpenGL_onDrawFrame(JNIEnv *env, jobject instance) {
     LOGD("jni call OpenGL_onDrawFrame");
-
+    NativeGLRender::getInstance()->OnDrawFrame();
 }
 
 /*

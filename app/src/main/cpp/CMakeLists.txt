@@ -35,10 +35,17 @@ find_library( # 设置path变量的名称
         # 在CMake定位前指定的NDK库名称
         log)
 
+find_library(
+        opengl-lib
+        libGLESv3.so
+)
+
 
 # 指定库CMake应该链接到目标库中，可以链接多个库，比如定义库，构建脚本，预先构建的第三方库或者系统库
 target_link_libraries( # 指定目标库
         native-lib
 
         # 目标库到日志库的链接 包含在NDK
-        ${log-lib})
+        ${log-lib}
+        ${opengl-lib}
+        )
